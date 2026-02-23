@@ -1,4 +1,4 @@
-const weddingData = {
+export const weddingData = {
   groom: {
     fullName: "Yusri Adi Januar",
     nickname: "Adhi",
@@ -13,6 +13,8 @@ const weddingData = {
     mother: "Destri Safitri Sarwanti",
     childOrder: "Putri",
   },
+  // Waktu target untuk Countdown Timer (Format: YYYY-MM-DDTHH:mm:00)
+  targetDate: "2026-05-21T09:00:00",
   events: {
     akad: {
       title: "Akad Nikah",
@@ -42,16 +44,21 @@ const weddingData = {
     {
       monthYear: "Desember 2025",
       title: "Lamaran",
-      story: "Perjalanan tidak selalu mudah. Namun segala perjuangan terbayarkan dengan diiringi doa restu keluarga, kami saling mengutarakan tujuan untuk membina rumah tangga."
+      story: "Perjalanan tidak selalu mudah. Namun segala perjuangan terbayarkan dengan diiringi doa restu dari para guru, orang tua dan keluarga, kami saling mengutarakan tujuan untuk membina rumah tangga."
     }
+  ],
+  gallery: [
+    // Ganti URL ini dengan URL gambar Anda nanti (Bisa taruh file di folder public/images/ lalu ganti src menjadi "/images/foto1.jpg")
+    "https://placehold.co/800x533/F7F3EE/967041?text=Foto+Landscape+1",
+    "https://placehold.co/800x533/1A1A1A/967041?text=Foto+Landscape+2"
   ],
   gifts: {
     banks: [
       { bankName: "BCA", accountNumber: "0123456789", accountName: "Yusri Adi Januar" },
-      { bankName: "DANA", accountNumber: "081234567890", accountName: "Dista Puspita Purnomo" }
+      { bankName: "DANA", accountNumber: "081234567890", accountName: "Yusri Adi Januar" }
     ],
     physicalAddress: {
-      receiverName: "Adhi & Dista",
+      receiverName: "Yusri Adi Januar (Adhi)",
       address: "Tegiri 2 Rt 50, Rw 19 Hargowilis, Kokap, Kulon Progo, 55653"
     }
   },

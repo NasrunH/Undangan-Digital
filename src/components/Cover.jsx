@@ -1,3 +1,6 @@
+import React from 'react';
+import { weddingData } from '../data/data';
+
 const Cover = ({ isOpened, onOpen, guestName }) => {
   return (
     <div 
@@ -13,16 +16,16 @@ const Cover = ({ isOpened, onOpen, guestName }) => {
       </div>
 
       <div className="text-center px-6 flex flex-col items-center">
-        <p className="text-[#967041] tracking-[0.3em] text-xs uppercase mb-6 font-semibold">The Wedding Of</p>
-        <h1 className="text-5xl font-serif text-[#1A1A1A] mb-8 relative">
-          <span className="block mb-2">{weddingData.groom.nickname}</span>
-          <span className="block text-3xl text-[#967041] italic my-2">&</span>
-          <span className="block">{weddingData.bride.nickname}</span>
+        <p className="text-[#967041] tracking-[0.3em] text-xs uppercase mb-6 font-semibold animate-pulse">The Wedding Of</p>
+        <h1 className="text-5xl md:text-7xl font-serif text-[#1A1A1A] mb-8 relative">
+          <span className="block mb-2 md:inline-block">{weddingData.groom.nickname}</span>
+          <span className="block text-3xl md:text-5xl md:inline-block text-[#967041] italic my-2 md:mx-6">&</span>
+          <span className="block md:inline-block">{weddingData.bride.nickname}</span>
         </h1>
 
-        <div className="mt-10 p-6 bg-white bg-opacity-60 rounded-2xl border border-[#eaddcf] backdrop-blur-sm w-full max-w-[280px]">
-          <p className="text-xs text-gray-500 mb-2">Kepada Yth.</p>
-          <h2 className="text-xl font-serif font-bold text-[#1A1A1A] border-b-2 border-[#967041] pb-2 inline-block px-4">
+        <div className="mt-10 p-6 md:p-8 bg-white bg-opacity-60 rounded-2xl border border-[#eaddcf] backdrop-blur-sm w-full max-w-sm shadow-sm">
+          <p className="text-xs text-gray-500 mb-2">Kepada Teman/Sahabatku:</p>
+          <h2 className="text-xl md:text-2xl font-serif font-bold text-[#1A1A1A] border-b-2 border-[#967041] pb-2 inline-block px-4">
             {guestName}
           </h2>
         </div>
@@ -40,3 +43,5 @@ const Cover = ({ isOpened, onOpen, guestName }) => {
     </div>
   );
 };
+
+export default Cover;
