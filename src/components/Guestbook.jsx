@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Send, CheckCircle2, UserCircle2, Clock, XCircle } from 'lucide-react';
+import { Send, CheckCircle2, UserCircle2, Clock, XCircle, CheckCircle, AlertCircle, X } from 'lucide-react';
 import { supabase } from '../supabaseClient';
 import FadeIn from './FadeIn';
 
@@ -12,6 +12,9 @@ const Guestbook = ({ guestNameFromUrl }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isFetching, setIsFetching] = useState(true);
 
+  // State untuk Custom Alert
+  const [alertInfo, setAlertInfo] = useState({ show: false, message: '', type: 'success' });
+
   // Set nama dari URL sebagai default
   useEffect(() => {
     if (guestNameFromUrl && guestNameFromUrl !== 'Teman & Sahabat') {
@@ -20,6 +23,15 @@ const Guestbook = ({ guestNameFromUrl }) => {
     fetchMessages();
   }, [guestNameFromUrl]);
 
+  // Fungsi memunculkan alert menarik
+  const triggerAlert = (msg, type = 'success') => {
+    setAlertInfo({ show: true, message: msg, type });
+    // Otomatis hilang setelah 3 detik
+    setTimeout(() => {
+      setAlertInfo(prev => ({ ...prev, show: false }));
+    }, 3000);
+  };
+
   // Fungsi mengambil pesan dari Supabase
   const fetchMessages = async () => {
     setIsFetching(true);
@@ -27,7 +39,7 @@ const Guestbook = ({ guestNameFromUrl }) => {
       const { data, error } = await supabase
         .from('guestbook')
         .select('*')
-        .order('created_at', { ascending: false }); // Tampilkan yang terbaru di atas
+        .order('created_at', { ascending: false });
 
       if (error) throw error;
       if (data) setMessages(data);
@@ -38,7 +50,7 @@ const Guestbook = ({ guestNameFromUrl }) => {
     }
   };
 
-  // Fungsi format tanggal (contoh: "12 Mei 2026, 14:30")
+  // Fungsi format tanggal
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     return new Date(dateString).toLocaleDateString('id-ID', options);
@@ -61,25 +73,53 @@ const Guestbook = ({ guestNameFromUrl }) => {
 
       if (error) throw error;
 
-      // Bersihkan form (kecuali nama) dan tambahkan pesan baru ke daftar paling atas
       setMessage('');
       if (data) {
         setMessages([data[0], ...messages]);
       }
       
-      // Opsional: Tampilkan alert sukses (bisa diganti dengan toast UI nanti)
-      alert("Terima kasih atas doa dan ucapan Anda!");
+      // Memanggil alert sukses (Mengganti fungsi alert bawaan)
+      triggerAlert("Terima kasih atas doa dan ucapan Anda!", "success");
 
     } catch (error) {
       console.error("Error inserting message:", error);
-      alert("Gagal mengirim pesan. Silakan coba lagi.");
+      // Memanggil alert gagal
+      triggerAlert("Gagal mengirim pesan. Silakan coba lagi.", "error");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <section className="py-24 px-6 bg-white border-y border-[#eaddcf]">
+    <section className="py-24 px-6 bg-white border-y border-[#eaddcf] relative">
+      
+      {/* KODE CUSTOM ALERT (Notifikasi Melayang) */}
+      <div 
+        className={`fixed top-10 left-1/2 transform -translate-x-1/2 z-[100] flex items-center gap-3 px-6 py-4 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] transition-all duration-500 w-[90%] max-w-sm md:max-w-md ${
+          alertInfo.show ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0 pointer-events-none'
+        } ${
+          alertInfo.type === 'success' 
+            ? 'bg-white border-b-4 border-[#967041]' 
+            : 'bg-red-50 border-b-4 border-red-500'
+        }`}
+      >
+        {alertInfo.type === 'success' ? (
+          <CheckCircle className="text-[#967041] shrink-0" size={24} />
+        ) : (
+          <AlertCircle className="text-red-500 shrink-0" size={24} />
+        )}
+        <p className={`text-sm font-bold tracking-wide flex-1 ${alertInfo.type === 'success' ? 'text-[#1A1A1A]' : 'text-red-700'}`}>
+          {alertInfo.message}
+        </p>
+        <button 
+          onClick={() => setAlertInfo({ ...alertInfo, show: false })} 
+          className="text-gray-400 hover:text-gray-800 transition-colors"
+        >
+          <X size={18} />
+        </button>
+      </div>
+      {/* AKHIR CUSTOM ALERT */}
+
       <FadeIn>
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
@@ -164,8 +204,6 @@ const Guestbook = ({ guestNameFromUrl }) => {
                       <div className="flex-1">
                         <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
                           <h5 className="font-bold text-[#1A1A1A]">{msg.name}</h5>
-                          
-                          {/* Label Kehadiran */}
                           {msg.attendance === 'Hadir' && (
                             <span className="flex items-center gap-1 text-[10px] font-bold bg-green-100 text-green-700 px-2 py-0.5 rounded-full uppercase tracking-wider">
                               <CheckCircle2 size={10} /> Hadir
@@ -190,7 +228,6 @@ const Guestbook = ({ guestNameFromUrl }) => {
               </div>
             )}
           </div>
-
         </div>
       </FadeIn>
     </section>
