@@ -4,7 +4,7 @@ export const weddingData = {
   targetDate: "2026-04-23T09:00:00",
   events: {
     akad: { title: "Akad Nikah", day: "Kamis", dateStr: "23 April 2026", time: "09.00 WIB - Selesai", location: "Kediaman Mempelai Wanita", address: "Brangkal Rt 53, Rw 17 Banyuroto, Nanggulan, Kulon Progo", mapsLink: "https://maps.google.com" },
-    ngunduhMantu: { title: "Menerima Tamu", day: "Rabu", dateStr: "22 April 2026", time: "08.00 WIB - 20.00", location: "Kediaman Mempelai Pria (Bpk. Wagirin)", address: "Tegiri 2 Rt 50, Rw 19 Hargowilis, Kokap, Kulon Progo", mapsLink: "https://goo.gl/maps/tefvi8jPct8GfcQn6" }
+    ngunduhMantu: { title: "Menerima Tamu", day: "Rabu", dateStr: "22 April 2026", time: "08.00 WIB - 20.00 WIB", location: "Kediaman Mempelai Pria (Bpk. Wagirin)", address: "Tegiri 2 Rt 50, Rw 19 Hargowilis, Kokap, Kulon Progo", mapsLink: "https://goo.gl/maps/tefvi8jPct8GfcQn6" }
   },
   loveStory: [
     { monthYear: "Januari 2023", title: "Awal Bertemu", story: "Taqdir Allah mempertemukan kami pada sebuah momen yang tidak pernah kami duga sebelumnya. Berawal dari perkenalan sederhana yang membawa kesan mendalam.", image: "https://placehold.co/400x300/1A1A1A/C5A059?text=Momen+1" },
