@@ -4,20 +4,31 @@ import FadeIn from './FadeIn';
 
 const LoveStory = () => {
   return (
-    <section className="py-24 px-8 bg-[#F7F3EE] relative">
+    <section className="py-24 px-6 bg-[#FDFBF7] relative overflow-hidden">
       <FadeIn>
-        <h2 className="text-sm font-sans font-bold text-center mb-16 text-[#967041] tracking-[0.3em] uppercase">Love Story</h2>
+        <div className="text-center mb-16">
+          <h2 className="text-sm font-sans font-bold text-[#C5A059] tracking-[0.3em] uppercase">Love Story</h2>
+          <h3 className="text-3xl font-serif text-[#1A1A1A] mt-4">Perjalanan Cinta Kami</h3>
+        </div>
         
-        <div className="relative border-l-2 border-[#967041] ml-4 md:mx-auto md:w-full max-w-2xl space-y-12 pb-4">
+        <div className="max-w-4xl mx-auto space-y-16">
           {weddingData.loveStory.map((story, index) => (
-            <FadeIn key={index} delay={index * 200}>
-              <div className="pl-8 relative group">
-                <div className="absolute w-4 h-4 bg-[#967041] rounded-full -left-[9px] top-1 shadow-[0_0_0_4px_#F7F3EE] group-hover:scale-125 transition-transform duration-300"></div>
-                <span className="text-xs font-bold text-[#967041] bg-white px-3 py-1.5 rounded shadow-sm inline-block mb-3">
-                  {story.monthYear}
-                </span>
-                <h4 className="text-xl font-serif font-bold text-[#1A1A1A] mb-2">{story.title}</h4>
-                <p className="text-sm text-gray-600 leading-relaxed md:text-base">{story.story}</p>
+            <FadeIn key={index} delay={index * 200} direction={index % 2 === 0 ? 'right' : 'left'}>
+              <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-16`}>
+                
+                <div className="w-full md:w-1/2 relative">
+                  <div className={`absolute inset-0 border border-[#C5A059] ${index % 2 === 0 ? '-translate-x-4 translate-y-4' : 'translate-x-4 translate-y-4'} rounded-2xl`}></div>
+                  <img src={story.image} alt={story.title} className="w-full h-64 object-cover rounded-2xl relative z-10 shadow-lg" />
+                </div>
+                
+                <div className={`w-full md:w-1/2 text-center ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
+                  <span className="text-xs font-bold text-[#C5A059] bg-[#C5A059]/10 px-3 py-1.5 rounded-full uppercase tracking-wider mb-4 inline-block">
+                    {story.monthYear}
+                  </span>
+                  <h4 className="text-3xl font-serif font-bold text-[#1A1A1A] mb-4">{story.title}</h4>
+                  <p className="text-gray-600 leading-relaxed text-sm md:text-base">{story.story}</p>
+                </div>
+                
               </div>
             </FadeIn>
           ))}

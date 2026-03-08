@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Music, Music2 } from 'lucide-react';
 
-// Import Komponen
 import Cover from './components/Cover';
 import Hero from './components/Hero';
 import Countdown from './components/Countdown';
@@ -10,18 +9,15 @@ import Events from './components/Events';
 import LoveStory from './components/LoveStory';
 import Gallery from './components/Gallery';
 import Gift from './components/Gift';
-import Footer from './components/Footer';
 import Guestbook from './components/Guestbook';
+import Footer from './components/Footer';
 
 export default function App() {
   const [isOpened, setIsOpened] = useState(false);
   const [guestName, setGuestName] = useState('Teman & Sahabat');
   const [isPlaying, setIsPlaying] = useState(false);
-  
-  // Referensi untuk elemen audio HTML
   const audioRef = useRef(null);
 
-  // Mengambil nama dari URL Parameter (?to=Nama)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const to = params.get('to');
@@ -31,14 +27,7 @@ export default function App() {
   const handleOpenInvitation = () => {
     setIsOpened(true);
     setIsPlaying(true);
-    
-    // Memutar musik saat tombol ditekan
-    if (audioRef.current) {
-      audioRef.current.play().catch(error => {
-        console.log("Audio autoplay diblokir browser, pengguna harus klik tombol play manual.", error);
-      });
-    }
-    
+    if (audioRef.current) audioRef.current.play().catch(e => console.log(e));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -52,22 +41,12 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1A1A1A] selection:bg-[#967041] selection:text-white font-sans text-[#1A1A1A]">
-      
-      {/* ELEMEN AUDIO (Sembunyi) - Pastikan file ada di /public/audio/backsound.mp3 */}
+    <div className="min-h-screen bg-[#1A1A1A] selection:bg-[#C5A059] selection:text-white font-sans text-[#1A1A1A]">
       <audio ref={audioRef} loop src="/audio/backsound.mp3" preload="auto"></audio>
 
-      {/* Kontainer utama diubah menjadi lebih lebar di desktop (max-w-4xl) tetapi tetap rapi */}
-      <div className="w-full bg-[#F7F3EE] min-h-screen relative shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-x-hidden">
-        
-        {/* Render Komponen Cover */}
-        <Cover 
-          isOpened={isOpened} 
-          onOpen={handleOpenInvitation} 
-          guestName={guestName} 
-        />
+      <div className="w-full bg-[#FDFBF7] min-h-screen relative shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-x-hidden mx-auto">
+        <Cover isOpened={isOpened} onOpen={handleOpenInvitation} guestName={guestName} />
 
-        {/* Render Isi Undangan */}
         {isOpened && (
           <div className="animate-[fadeIn_2s_ease-in-out]">
             <Hero />
@@ -76,20 +55,15 @@ export default function App() {
             <Events />
             <LoveStory />
             <Gallery />
-            <Guestbook guestNameFromUrl={guestName} />
             <Gift />
+            <Guestbook guestNameFromUrl={guestName} />
             <Footer />
 
-            {/* Float Music Button */}
             <button 
               onClick={toggleAudio}
-              className="fixed bottom-6 right-6 w-14 h-14 bg-[#967041] text-white rounded-full flex items-center justify-center shadow-[0_8px_25px_rgba(150,112,65,0.5)] z-40 transition-transform hover:scale-110"
+              className="fixed bottom-6 right-6 w-14 h-14 bg-[#1A1A1A] border border-[#C5A059] text-[#C5A059] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(197,160,89,0.3)] z-40 transition-transform hover:scale-110"
             >
-              {isPlaying ? (
-                <Music size={24} className="animate-spin-slow" />
-              ) : (
-                <Music2 size={24} className="opacity-50" />
-              )}
+              {isPlaying ? <Music size={24} className="animate-spin-slow" /> : <Music2 size={24} className="opacity-50" />}
             </button>
           </div>
         )}

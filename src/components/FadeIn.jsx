@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-// Komponen ajaib untuk membuat efek animasi muncul perlahan saat discroll
-const FadeIn = ({ children, delay = 0 }) => {
+const FadeIn = ({ children, delay = 0, direction = 'up', className = '' }) => {
   const [isVisible, setVisible] = useState(false);
   const domRef = useRef();
 
@@ -10,23 +9,30 @@ const FadeIn = ({ children, delay = 0 }) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setVisible(true);
-          // Hentikan observasi setelah muncul agar animasi tidak berulang-ulang saat discroll naik-turun
           observer.unobserve(domRef.current);
         }
       });
     });
-    
     if (domRef.current) observer.observe(domRef.current);
-    return () => {
-      if (domRef.current) observer.unobserve(domRef.current);
-    };
+    return () => domRef.current && observer.unobserve(domRef.current);
   }, []);
+
+  const getTransform = () => {
+    if (isVisible) return 'translate-y-0 translate-x-0';
+    switch (direction) {
+      case 'up': return 'translate-y-12';
+      case 'down': return '-translate-y-12';
+      case 'left': return 'translate-x-12';
+      case 'right': return '-translate-x-12';
+      default: return 'translate-y-12';
+    }
+  };
 
   return (
     <div
       ref={domRef}
-      className={`transition-all duration-1000 ease-out transform ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      className={`transition-all duration-[1200ms] ease-out transform ${className} ${
+        isVisible ? `opacity-100 ${getTransform()}` : `opacity-0 ${getTransform()}`
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >

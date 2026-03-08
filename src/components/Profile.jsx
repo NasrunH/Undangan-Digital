@@ -4,36 +4,42 @@ import FadeIn from './FadeIn';
 
 const Profile = () => {
   return (
-    <section className="py-20 px-6 relative bg-white border-y border-[#eaddcf]">
+    <section className="py-24 px-6 relative bg-white overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-full bg-gradient-to-b from-transparent via-[#C5A059]/20 to-transparent"></div>
+      
       <FadeIn>
-        <div className="flex flex-col md:flex-row justify-center items-center gap-10 md:gap-24 max-w-4xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-sm font-sans font-bold text-[#C5A059] tracking-[0.3em] uppercase">Sang Mempelai</h2>
+        </div>
+
+        <div className="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-24 max-w-5xl mx-auto relative z-10">
           
-          {/* Mempelai Pria */}
-          <div className="text-center relative flex-1">
-            <div className="w-28 h-28 rounded-full border-2 border-[#967041] mx-auto mb-6 p-1 hover:scale-105 transition-transform duration-500">
-                <div className="w-full h-full bg-[#F7F3EE] rounded-full flex items-center justify-center text-[#967041] font-serif text-4xl">A</div>
+          <div className="text-center flex-1 relative group">
+            <div className="w-40 h-40 md:w-48 md:h-48 mx-auto mb-8 relative">
+              <div className="absolute inset-0 border-[3px] border-dashed border-[#C5A059] rounded-full animate-[spin_15s_linear_infinite]"></div>
+              <img src={weddingData.images.groom} alt="Groom" className="w-full h-full object-cover rounded-full border-4 border-white shadow-xl relative z-10 group-hover:scale-105 transition-transform duration-500" />
             </div>
             <h3 className="text-3xl font-serif font-bold text-[#1A1A1A] mb-3">{weddingData.groom.fullName}</h3>
-            <p className="text-sm text-gray-600 leading-relaxed">
-              {weddingData.groom.childOrder} dari<br/>
-              <span className="font-semibold text-[#1A1A1A]">Bapak {weddingData.groom.father} & Ibu {weddingData.groom.mother}</span>
+            <p className="text-sm text-gray-500 leading-relaxed uppercase tracking-wider mb-2">
+              {weddingData.groom.childOrder} dari
             </p>
+            <p className="font-serif text-[#C5A059] text-lg">Bapak {weddingData.groom.father} <br/>& Ibu {weddingData.groom.mother}</p>
           </div>
 
-          <div className="text-[#967041] font-serif text-5xl italic opacity-50 shrink-0">
+          <div className="text-[#C5A059] font-serif text-6xl italic shrink-0 drop-shadow-md">
             &
           </div>
 
-          {/* Mempelai Wanita */}
-          <div className="text-center relative flex-1">
-            <div className="w-28 h-28 rounded-full border-2 border-[#967041] mx-auto mb-6 p-1 hover:scale-105 transition-transform duration-500">
-                <div className="w-full h-full bg-[#F7F3EE] rounded-full flex items-center justify-center text-[#967041] font-serif text-4xl">D</div>
+          <div className="text-center flex-1 relative group">
+            <div className="w-40 h-40 md:w-48 md:h-48 mx-auto mb-8 relative">
+              <div className="absolute inset-0 border-[3px] border-dashed border-[#C5A059] rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
+              <img src={weddingData.images.bride} alt="Bride" className="w-full h-full object-cover rounded-full border-4 border-white shadow-xl relative z-10 group-hover:scale-105 transition-transform duration-500" />
             </div>
             <h3 className="text-3xl font-serif font-bold text-[#1A1A1A] mb-3">{weddingData.bride.fullName}</h3>
-            <p className="text-sm text-gray-600 leading-relaxed">
-              {weddingData.bride.childOrder} dari<br/>
-              <span className="font-semibold text-[#1A1A1A]">Bapak {weddingData.bride.father} & Ibu {weddingData.bride.mother}</span>
+            <p className="text-sm text-gray-500 leading-relaxed uppercase tracking-wider mb-2">
+              {weddingData.bride.childOrder} dari
             </p>
+            <p className="font-serif text-[#C5A059] text-lg">Bapak {weddingData.bride.father} <br/>& Ibu {weddingData.bride.mother}</p>
           </div>
 
         </div>
