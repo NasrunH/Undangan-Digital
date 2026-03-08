@@ -11,13 +11,13 @@ export const weddingData = {
     { monthYear: "Desember 2025", title: "Lamaran", story: "Perjalanan tidak selalu mudah. Namun segala perjuangan terbayarkan dengan diiringi doa restu dari para guru, orang tua dan keluarga, kami saling mengutarakan tujuan untuk membina rumah tangga.", image: "https://placehold.co/400x300/1A1A1A/C5A059?text=Momen+2" }
   ],
   gallery: [
-    "../../public/images/g1.jpeg",
-    "../../public/images/g2.jpeg",
-    "../../public/images/g3.jpeg",
-    "../../public/images/g4.jpeg"
+    "/images/g1.jpeg",
+    "/images/g2.jpeg",
+    "/images/g3.jpeg",
+    "/images/g4.jpeg"
   ],
   images: {
-    cover: "../../public/images/cover.jpeg",
+    cover: "/images/cover.jpeg",
     heroArch: "https://placehold.co/800x1200/FDFBF7/C5A059?text=Foto+Prewed+(Berdiri)",
     groom: "https://placehold.co/400x400/1A1A1A/C5A059?text=Foto+Adhi",
     bride: "https://placehold.co/400x400/1A1A1A/C5A059?text=Foto+Dista"
