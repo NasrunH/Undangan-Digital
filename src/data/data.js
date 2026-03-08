@@ -18,9 +18,9 @@ export const weddingData = {
   ],
   images: {
     cover: "/images/cover.jpeg",
-    heroArch: "https://placehold.co/800x1200/FDFBF7/C5A059?text=Foto+Prewed+(Berdiri)",
-    groom: "https://placehold.co/400x400/1A1A1A/C5A059?text=Foto+Adhi",
-    bride: "https://placehold.co/400x400/1A1A1A/C5A059?text=Foto+Dista"
+    heroArch: "/images/pp.jpeg",
+    groom: "/images/yusri.jpeg",
+    bride: "/images/dista.jpeg"
   },
   gifts: {
     banks: [
